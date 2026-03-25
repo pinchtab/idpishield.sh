@@ -1,0 +1,53 @@
+---
+import CodeTerminal from '@/components/ui/CodeTerminal.astro';
+
+export interface Props {
+  agent: string;
+  human: string;
+  response?: string;
+}
+
+const { agent, human, response } = Astro.props;
+
+const formattedResponse = (() => {
+  if (!response) return null;
+
+  try {
+    return JSON.stringify(JSON.parse(response), null, 2);
+  } catch {
+    return response;
+  }
+})();
+---
+
+<CodeTerminal
+  tabs={[
+    {
+      label: 'Human',
+      method: 'human',
+      code: human,
+    },
+    {
+      label: 'Agent',
+      method: 'agent',
+      code: agent,
+    },
+  ]}
+  defaultTab="human"
+  class="my-10"
+  terminalLabel="terminal"
+  showTabs={false}
+  syncWithSiteMode={true}
+>
+  {
+    formattedResponse && (
+      <div slot="footer" class="border-t border-brand-border-subtle/10 px-6 py-5">
+        <div class="mb-3 flex items-center gap-2">
+          <div class="h-1.5 w-1.5 rounded-full bg-brand-green/50"></div>
+          <span class="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-brand-text-dim">Response</span>
+        </div>
+        <pre class="code-terminal-section m-0 overflow-x-auto whitespace-pre-wrap border-0 bg-transparent p-0 text-left font-mono text-[0.78rem] leading-[1.65] text-brand-text-muted shadow-none"><code>{formattedResponse}</code></pre>
+      </div>
+    )
+  }
+</CodeTerminal>

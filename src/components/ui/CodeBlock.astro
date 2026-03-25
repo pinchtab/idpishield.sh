@@ -1,0 +1,25 @@
+---
+import { cn } from '@/lib/utils';
+
+export interface Props {
+  lang?: string;
+  title?: string;
+  class?: string;
+}
+
+const { lang = 'bash', title, class: className } = Astro.props;
+---
+
+<div class={cn('rounded-md overflow-hidden border border-[rgb(var(--brand-border-subtle-rgb)/0.12)]', className)}>
+  {title && (
+    <div class="flex items-center gap-2 px-4 py-2.5 bg-[rgb(var(--brand-surface-rgb))] border-b border-[rgb(var(--brand-border-subtle-rgb)/0.08)]">
+      <div class="flex gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-[rgb(239_68_68/0.7)]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[rgb(245_158_11/0.7)]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[rgb(34_197_94/0.7)]"></span>
+      </div>
+      <span class="text-xs text-brand-text-dim font-mono ml-1">{title}</span>
+    </div>
+  )}
+  <pre class="!rounded-none !border-0 !m-0"><code class={`language-${lang}`}><slot /></code></pre>
+</div>

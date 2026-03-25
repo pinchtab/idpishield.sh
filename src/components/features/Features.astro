@@ -1,0 +1,65 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+
+const features = [
+  {
+    icon: '⚡',
+    title: 'Sub-millisecond',
+    description: 'Pattern matching and risk scoring complete in under a millisecond. No network calls in fast or balanced mode.',
+  },
+  {
+    icon: '🛡️',
+    title: '88+ Detection Patterns',
+    description: 'Multi-language patterns covering instruction override, exfiltration, role hijacking, encoding tricks, and more.',
+  },
+  {
+    icon: '🎯',
+    title: 'Tiered Defense',
+    description: 'Three modes — fast, balanced, deep — so you pick the right tradeoff between speed and detection accuracy.',
+  },
+  {
+    icon: '🔧',
+    title: 'Go Library First',
+    description: 'Import as a Go package. One function call: Assess(text, url). CLI and MCP server are secondary interfaces.',
+  },
+  {
+    icon: '🌍',
+    title: 'Multi-language',
+    description: 'Patterns for English, French, Spanish, German, and Japanese. Unicode normalization handles obfuscation attempts.',
+  },
+  {
+    icon: '📊',
+    title: 'Explainable Results',
+    description: 'Every assessment returns score, level, matched patterns, categories, and reason — ready for audit logging.',
+  },
+  {
+    icon: '🔒',
+    title: 'Production Hardening',
+    description: 'Input size limits, decode depth bounds, circuit breaker for deep service, strict mode for lower thresholds.',
+  },
+  {
+    icon: '🤖',
+    title: 'MCP Native',
+    description: 'Run as an MCP server with stdio or HTTP transport. Token-based auth, constant-time credential checks.',
+  },
+];
+---
+
+<section>
+  <SectionHeading
+    label="Features"
+    title="Built for the AI security stack"
+    subtitle="Everything you need to assess prompt injection risk before content reaches your LLM."
+  />
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {features.map((feature) => (
+      <Card>
+        <div class="text-2xl mb-3">{feature.icon}</div>
+        <h3 class="text-base font-semibold mb-2 text-brand-text">{feature.title}</h3>
+        <p class="text-sm text-brand-text-muted leading-relaxed">{feature.description}</p>
+      </Card>
+    ))}
+  </div>
+</section>

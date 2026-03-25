@@ -1,0 +1,55 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+---
+
+<section>
+  <SectionHeading
+    label="Architecture"
+    title="Tiered defense by design"
+    subtitle="Local pattern matching handles most threats instantly. Optional deep service adds semantic analysis when needed."
+  />
+
+  <!-- Pipeline diagram -->
+  <div class="mb-10 overflow-x-auto">
+    <pre class="!bg-[rgb(var(--brand-surface-code-rgb))] !text-sm !leading-relaxed font-mono text-brand-text-muted">{`
+  Input Text
+      │
+      ├── Domain Allowlist ──── trusted? ──→ skip
+      │
+      ├── Unicode Normalization
+      │     └── decode obfuscation (HTML entities, base64, etc.)
+      │
+      ├── Pattern Matching (88+ patterns, 5 languages)
+      │     ├── instruction-override
+      │     ├── exfiltration
+      │     ├── role-hijacking
+      │     ├── encoding-tricks
+      │     └── social-engineering
+      │
+      ├── Risk Scoring (0–100)
+      │     ├── default: blocks at ≥ 60
+      │     └── strict:  blocks at ≥ 40
+      │
+      └── [Deep mode] ──→ Service escalation
+            ├── Semantic similarity
+            └── LLM intent analysis
+    `}</pre>
+  </div>
+
+  <!-- Mode cards -->
+  <div class="grid gap-4 sm:grid-cols-3">
+    <Card>
+      <div class="text-xs font-semibold uppercase tracking-wider text-brand-accent mb-2">Fast</div>
+      <p class="text-sm text-brand-text-muted">Pattern matching on raw input. Highest throughput, lowest latency.</p>
+    </Card>
+    <Card>
+      <div class="text-xs font-semibold uppercase tracking-wider text-brand-accent mb-2">Balanced</div>
+      <p class="text-sm text-brand-text-muted">Normalization + pattern matching. Recommended default for most integrations.</p>
+    </Card>
+    <Card>
+      <div class="text-xs font-semibold uppercase tracking-wider text-brand-accent mb-2">Deep</div>
+      <p class="text-sm text-brand-text-muted">Balanced + optional service escalation for semantic and LLM-based analysis.</p>
+    </Card>
+  </div>
+</section>

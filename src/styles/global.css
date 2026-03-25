@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@config "../../tailwind.config.ts";
+@import "tailwindcss";
+
+:root {
+  --brand-bg-rgb: 10 12 18;
+  --brand-surface-rgb: 18 22 32;
+  --brand-surface-hover-rgb: 28 34 48;
+  --brand-surface-code-rgb: 14 17 26;
+  --brand-border-rgb: 16 185 129;
+  --brand-border-subtle-rgb: 255 255 255;
+  --brand-text-rgb: 226 232 240;
+  --brand-text-muted-rgb: 148 163 184;
+  --brand-text-dim-rgb: 100 116 139;
+  --brand-accent-rgb: 16 185 129;
+  --brand-accent-light-rgb: 52 211 153;
+  --brand-accent-dark-rgb: 5 150 105;
+  --brand-accent-contrast-rgb: 10 10 10;
+  --theme-glow-rgb: 16 185 129;
+  --selection-bg-rgb: 16 185 129;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--brand-bg-rgb));
+  color: rgb(var(--brand-text-rgb));
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgb(var(--selection-bg-rgb) / 0.95);
+  color: #000;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:not([class]) {
+  color: rgb(var(--brand-accent-rgb));
+}
+
+a:not([class]):hover {
+  color: rgb(var(--brand-accent-light-rgb));
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.85em;
+  background-color: rgb(var(--brand-accent-rgb) / 0.10);
+  color: rgb(var(--brand-accent-light-rgb));
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+pre code {
+  font-size: inherit;
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+pre {
+  background-color: rgb(var(--brand-surface-code-rgb));
+  border: 1px solid rgb(var(--brand-border-subtle-rgb) / 0.12);
+  border-radius: 16px;
+  overflow-x: auto;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--brand-surface-hover-rgb)) rgb(var(--brand-bg-rgb) / 0.45);
+}
+
+section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 72px 24px;
+}
+
+@layer utilities {
+  .container-custom {
+    @apply w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-10;
+  }
+
+  .section-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--brand-accent-rgb));
+  }
+
+  .glow {
+    box-shadow: 0 0 40px rgb(var(--brand-accent-rgb) / 0.12);
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--brand-accent-rgb)),
+      rgb(var(--brand-accent-light-rgb))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

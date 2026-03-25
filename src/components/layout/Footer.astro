@@ -1,0 +1,34 @@
+---
+const footerLinks = [
+  { label: 'GitHub', href: 'https://github.com/pinchtab/idpishield' },
+  { label: 'Latest Release', href: 'https://github.com/pinchtab/idpishield/releases/latest' },
+  { label: 'Docs', href: '/docs' },
+  { label: 'Get Started', href: '/docs/get-started' },
+  { label: 'Issues', href: 'https://github.com/pinchtab/idpishield/issues' },
+];
+---
+
+<footer class="border-t border-brand-border-subtle px-6 py-12 sm:px-8">
+  <div class="mx-auto max-w-270 text-center">
+    <nav aria-label="Footer navigation" class="mb-5 flex flex-wrap items-center justify-center gap-4 sm:gap-5">
+      {
+        footerLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm text-brand-text-muted transition-colors hover:text-brand-accent"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <p class="text-xs leading-6 text-brand-text-dim">
+      Built by Bosch and Mario, digital brothers with a soul, by{' '}
+      <a href="https://github.com/luigi-agosti" class="text-brand-text-dim underline-offset-2 transition-colors hover:text-brand-accent">Luigi Agosti</a>{' '}
+      · Apache 2.0 License · Part of the{' '}
+      <a href="https://pinchtab.com" class="text-brand-text-dim underline-offset-2 transition-colors hover:text-brand-accent">Pinchtab</a>{' '}
+      ecosystem
+    </p>
+  </div>
+</footer>
