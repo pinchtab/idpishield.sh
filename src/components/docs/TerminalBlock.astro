@@ -1,5 +1,5 @@
 ---
-import CodeTerminal from '@/components/ui/CodeTerminal.astro';
+import { cn } from '@/lib/utils';
 
 export interface Props {
   agent: string;
@@ -9,9 +9,11 @@ export interface Props {
 
 const { agent, human, response } = Astro.props;
 
+// Use agent content if available, fall back to human
+const code = agent || human;
+
 const formattedResponse = (() => {
   if (!response) return null;
-
   try {
     return JSON.stringify(JSON.parse(response), null, 2);
   } catch {
@@ -20,34 +22,38 @@ const formattedResponse = (() => {
 })();
 ---
 
-<CodeTerminal
-  tabs={[
-    {
-      label: 'Human',
-      method: 'human',
-      code: human,
-    },
-    {
-      label: 'Agent',
-      method: 'agent',
-      code: agent,
-    },
-  ]}
-  defaultTab="human"
-  class="my-10"
-  terminalLabel="terminal"
-  showTabs={false}
-  syncWithSiteMode={true}
->
-  {
-    formattedResponse && (
-      <div slot="footer" class="border-t border-brand-border-subtle/10 px-6 py-5">
-        <div class="mb-3 flex items-center gap-2">
-          <div class="h-1.5 w-1.5 rounded-full bg-brand-green/50"></div>
-          <span class="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-brand-text-dim">Response</span>
-        </div>
-        <pre class="code-terminal-section m-0 overflow-x-auto whitespace-pre-wrap border-0 bg-transparent p-0 text-left font-mono text-[0.78rem] leading-[1.65] text-brand-text-muted shadow-none"><code>{formattedResponse}</code></pre>
+<div class="my-10 rounded-md overflow-hidden border border-[rgb(var(--brand-border-subtle-rgb)/0.12)]" data-docs-terminal>
+  <!-- Terminal header -->
+  <div class="flex items-center justify-between px-4 py-2.5 bg-[rgb(var(--brand-surface-rgb))] border-b border-[rgb(var(--brand-border-subtle-rgb)/0.08)]">
+    <div class="flex items-center gap-2">
+      <div class="flex gap-1.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-[rgb(239_68_68/0.7)]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[rgb(245_158_11/0.7)]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[rgb(34_197_94/0.7)]"></span>
       </div>
-    )
-  }
-</CodeTerminal>
+      <span class="text-xs text-brand-text-dim font-mono ml-1">terminal</span>
+    </div>
+    <button
+      data-copy-terminal
+      class="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-brand-text-dim hover:text-brand-text transition-colors cursor-pointer px-2 py-1 rounded"
+    >
+      Copy
+    </button>
+  </div>
+
+  <!-- Terminal content -->
+  <div class="code-terminal-section bg-[rgb(var(--brand-surface-code-rgb))] p-5 overflow-x-auto" data-terminal-content>
+    <pre class="!bg-transparent !border-0 !p-0 !m-0 !rounded-none"><code class="!bg-transparent !p-0 text-sm leading-relaxed">{code}</code></pre>
+  </div>
+
+  <!-- Response -->
+  {formattedResponse && (
+    <div class="border-t border-[rgb(var(--brand-border-subtle-rgb)/0.10)] px-6 py-5">
+      <div class="mb-3 flex items-center gap-2">
+        <div class="h-1.5 w-1.5 rounded-full bg-[rgb(34_197_94/0.5)]"></div>
+        <span class="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-brand-text-dim">Response</span>
+      </div>
+      <pre class="code-terminal-section !bg-transparent !border-0 !p-0 !m-0 !rounded-none overflow-x-auto whitespace-pre-wrap text-left font-mono text-[0.78rem] leading-[1.65] text-brand-text-muted"><code>{formattedResponse}</code></pre>
+    </div>
+  )}
+</div>
