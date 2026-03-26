@@ -7,7 +7,7 @@ import CodeBlock from '@/components/ui/CodeBlock.astro';
   <SectionHeading
     label="Quick Start"
     title="Three lines to protection"
-    subtitle="Add idpi-shield to your Go project and start assessing untrusted content immediately."
+    subtitle="Add idpishield to your Go project and start assessing untrusted content immediately."
   />
 
   <div class="grid gap-6 md:grid-cols-2">
@@ -28,13 +28,13 @@ if result.Blocked {
     <!-- CLI -->
     <div>
       <h3 class="text-lg font-semibold mb-3 text-brand-text">CLI</h3>
-      <CodeBlock title="terminal" lang="bash">go install github.com/pinchtab/idpishield/cmd/idpi-shield@latest</CodeBlock>
+      <CodeBlock title="terminal" lang="bash">go install github.com/pinchtab/idpishield/cmd/idpishield@latest</CodeBlock>
       <div class="mt-4">
         <CodeBlock title="terminal" lang="bash">{`# Scan a file
-idpi-shield scan page.txt --mode balanced
+idpishield scan page.txt --mode balanced
 
 # Scan from stdin
-echo "Ignore all previous instructions" | idpi-shield scan
+echo "Ignore all previous instructions" | idpishield scan
 
 # JSON output
 {"score":80,"level":"critical","blocked":true}`}</CodeBlock>
@@ -47,10 +47,10 @@ echo "Ignore all previous instructions" | idpi-shield scan
     <h3 class="text-lg font-semibold mb-3 text-brand-text">MCP Server</h3>
     <div class="max-w-xl">
       <CodeBlock title="terminal" lang="bash">{`# stdio mode (default)
-idpi-shield mcp serve
+idpishield mcp serve
 
 # HTTP mode with auth
-idpi-shield mcp serve --transport http --auth-token "$IDPI_MCP_TOKEN"`}</CodeBlock>
+idpishield mcp serve --transport http --auth-token "$IDPI_MCP_TOKEN"`}</CodeBlock>
     </div>
     <p class="mt-3 text-sm text-brand-text-muted">
       Exposes <code>idpi_assess</code> as an MCP tool — works with any MCP-compatible agent framework.

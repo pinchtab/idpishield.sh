@@ -1,6 +1,6 @@
 # idpishield.sh
 
-Marketing and documentation site for [idpi-shield](https://github.com/pinchtab/idpishield), built with Astro (static output) and Tailwind CSS v4.
+Marketing and documentation site for [idpishield](https://github.com/pinchtab/idpishield), built with Astro (static output) and Tailwind CSS v4.
 
 ## Stack
 

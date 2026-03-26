@@ -501,7 +501,7 @@ export async function loadDocsFromRemote(): Promise<DocsData> {
 
   const firstSlug = sections.flatMap((section) => section.items)[0]?.slug ?? null;
   return {
-    name: 'idpi-shield',
+    name: 'idpishield',
     branch,
     docsJsonUrl,
     sections,
