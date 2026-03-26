@@ -5,7 +5,7 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   integrations: [react()],
-  site: 'https://idpishield.sh',
+  site: 'https://idpishield.com',
   base: '/',
   output: 'static',
 
